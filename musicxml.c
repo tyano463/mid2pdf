@@ -72,6 +72,7 @@ static int get_note_num(smf_t *smf, int track_no)
                 // printf("sys textual\n");
                 continue;
             }
+            // 3cがド
             printf("%7d %02x %02x %02x\n", event->time_pulses, event->midi_buffer[0], event->midi_buffer[1], event->midi_buffer[2]);
             cnt++;
         }
@@ -97,7 +98,7 @@ static bool has_note(smf_track_t *track)
     return get_track_note_num(track) > 0;
 }
 
-static char *convert(smf_t *smf)
+static char *convert(smf_t *smf, m2x_t* m2x)
 {
     smf_track_t *track;
 

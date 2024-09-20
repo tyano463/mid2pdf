@@ -27,8 +27,16 @@
           <step>D</step>
           <octave>4</octave>
         </pitch>
-        <duration>1024</duration>
-        <type>whole</type>
+        <duration>128</duration>
+        <type>eighth</type>
+      </note>
+      <note>
+        <pitch>
+          <step>E</step>
+          <octave>4</octave>
+        </pitch>
+        <duration>128</duration>
+        <type>eighth</type>
       </note>
     </measure>
   </part>

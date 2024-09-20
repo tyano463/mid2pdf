@@ -8,6 +8,7 @@
         "gtypes.h": "c",
         "gmacros.h": "c",
         "gversionmacros.h": "c",
-        "kernel.h": "c"
+        "kernel.h": "c",
+        "stdint.h": "c"
     }
 }
