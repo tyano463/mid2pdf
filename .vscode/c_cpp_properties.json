@@ -1,0 +1,22 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "/usr/local/include/**",
+                "/usr/include/glib-2.0/**",
+                "/usr/lib64/glib-2.0/include/**"
+            ],
+            "defines": [
+                "GLIB_COMPILATION=1"
+            ],
+            "compilerPath": "/usr/bin/clang",
+            "cStandard": "c17",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "linux-clang-x64",
+            "configurationProvider": "nordic-semiconductor.nrf-connect"
+        }
+    ],
+    "version": 4
+}

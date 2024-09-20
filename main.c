@@ -39,7 +39,7 @@ bool env_check(int argc, char *argv[])
     ERR_RETn(argc < 2);
 
     ERR_RETn(!file_exists(argv[1]));
-    ERR_RETn(!is_midi(argv[1]));
+    ERR_RETn(!is_midi(argv[1]) && !is_mxl(argv[1]));
 
     midi_path = argv[1];
 
@@ -62,14 +62,27 @@ error_return:
 int main(int argc, char *argv[])
 {
     int ret = -1;
+    char *xml;
+
     if (!env_check(argc, argv))
     {
         usage();
         goto error_return;
     }
 
-    char *xml = to_musicxml(midi_path);
-    ERR_RET(!xml, "convert to musicxml failed.");
+    if (is_midi(midi_path))
+    {
+        xml = to_musicxml(midi_path);
+        ERR_RET(!xml, "convert to musicxml failed.");
+    }
+    else if (is_mxl(midi_path))
+    {
+        xml = midi_path;
+    }
+    else
+    {
+        goto error_return;
+    }
 
     ret = to_pdf(xml, pdf_path);
     ERR_RET(ret, "convert to pdf failed.");

@@ -1,0 +1,13 @@
+{
+    "files.associations": {
+        "musicxml.h": "c",
+        "smf.h": "c",
+        "glib.h": "c",
+        "garray.h": "c",
+        "galloca.h": "c",
+        "gtypes.h": "c",
+        "gmacros.h": "c",
+        "gversionmacros.h": "c",
+        "kernel.h": "c"
+    }
+}

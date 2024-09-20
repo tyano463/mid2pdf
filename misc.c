@@ -22,14 +22,14 @@ error_return:
 }
 
 char *get_pdf_path(char *pdf_path, char *path)
-{   
+{
     int cnt = 1;
     char *ret = NULL;
-    
+
     sprintf(pdf_path, "%s", path);
     char *p = strrchr(pdf_path, '.');
     ERR_RETn(!p);
-    
+
     sprintf(p, ".pdf");
     while (file_exists(pdf_path))
     {
@@ -57,4 +57,9 @@ error_return:
 bool is_midi(const char *path)
 {
     return hasext(path, ".mid");
+}
+
+bool is_mxl(const char *path)
+{
+    return hasext(path, ".mxl");
 }
