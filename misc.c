@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <sys/stat.h>
+#include <stdint.h>
 #include "misc.h"
 #include "dlog.h"
 
@@ -62,4 +63,18 @@ bool is_midi(const char *path)
 bool is_mxl(const char *path)
 {
     return hasext(path, ".mxl");
+}
+
+int midival(const uint8_t *b)
+{
+    int ret = 0;
+    for (int i = 0; i < 4; i++)
+    {
+        ret += (b[i] & 0x7f);
+        if (b[i] & 0x80)
+            ret *= 0x80;
+        else
+            break;
+    }
+    return ret;
 }

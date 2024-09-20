@@ -1,6 +1,7 @@
 #include <stdio.h>
-#include <string.h>
+#include <stdlib.h>
 #include <unistd.h>
+#include <string.h>
 #include "musixtex.h"
 #include "dlog.h"
 
@@ -62,7 +63,7 @@ static int tex2pdf(const char *tex, const char *pdf)
     FILE *fp = popen(cmd, "r");
     ERR_RETn(!fp);
 
-    int status = pclose(cmd);
+    int status = pclose(fp);
     ERR_RETn(!status);
 
     ret = 0;

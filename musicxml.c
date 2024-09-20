@@ -3,6 +3,7 @@
 #include <stdint.h>
 #include <smf.h>
 #include "musicxml.h"
+#include "misc.h"
 #include "dlog.h"
 
 #define MAX_TRACK_NO 16
@@ -22,7 +23,6 @@ static int get_note_num(smf_t *smf, int track_no)
 {
     smf_event_t *event;
     int cnt = 0;
-    int tcnt = 0;
     if (g_smf == smf)
     {
         return note_num[track_no];
@@ -55,11 +55,7 @@ static int get_note_num(smf_t *smf, int track_no)
             {
                 if (event_is_tempo(event))
                 {
-                    uint32_t qms = 0;
-                    uint8_t *p = (uint8_t *)&qms;
-                    p[2] = event->midi_buffer[3];
-                    p[1] = event->midi_buffer[4];
-                    p[0] = event->midi_buffer[5];
+                    uint32_t qms = midival(&event->midi_buffer[3]);
                     if (qms)
                         printf("tempo:%d\n", 60000000 / qms);
                 }
@@ -126,10 +122,11 @@ char *to_musicxml(const char *path)
 {
     char *xml = NULL;
     smf_t *smf;
+    m2x_t m2x;
     smf = smf_load(path);
     ERR_RETn(!smf);
 
-    xml = convert(smf);
+    xml = convert(smf, &m2x);
 
 error_return:
 
