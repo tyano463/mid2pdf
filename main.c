@@ -2,7 +2,7 @@
 #include <stdbool.h>
 #include <stdlib.h>
 #include <pthread.h>
-#include "musicxml.h"
+#include "mididata.h"
 #include "musixtex.h"
 #include "misc.h"
 #include "dlog.h"
@@ -62,7 +62,7 @@ error_return:
 int main(int argc, char *argv[])
 {
     int ret = -1;
-    char *xml;
+    mdata_t *data;
 
     if (!env_check(argc, argv))
     {
@@ -72,19 +72,19 @@ int main(int argc, char *argv[])
 
     if (is_midi(midi_path))
     {
-        xml = to_musicxml(midi_path);
-        ERR_RET(!xml, "convert to musicxml failed.");
+        data = midi_analyze(midi_path);
+        ERR_RET(!data, "midi analyze failed.");
     }
-    else if (is_mxl(midi_path))
-    {
-        xml = midi_path;
-    }
+//    else if (is_mxl(midi_path))
+//    {
+//        xml = midi_path;
+//    }
     else
     {
         goto error_return;
     }
 
-    ret = to_pdf(xml, pdf_path);
+    ret = to_pdf(data, pdf_path);
     ERR_RET(ret, "convert to pdf failed.");
 
     ret = 0;

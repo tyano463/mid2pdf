@@ -9,6 +9,9 @@
         "gmacros.h": "c",
         "gversionmacros.h": "c",
         "kernel.h": "c",
-        "stdint.h": "c"
+        "stdint.h": "c",
+        "mididata.h": "c",
+        "misc.h": "c",
+        "dlog.h": "c"
     }
 }

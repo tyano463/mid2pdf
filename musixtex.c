@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <string.h>
+#include "mididata.h"
 #include "musixtex.h"
 #include "dlog.h"
 
@@ -48,7 +49,7 @@ bool is_installed_musixtex(void)
     return command_exists(CMD_TIMEOUT) && command_exists(CMD_MUSIXTEX);
 }
 
-static char *to_tex(const char *xml)
+static char *to_tex(const mdata_t *data)
 {
     return NULL;
 }
@@ -72,11 +73,11 @@ error_return:
     return ret;
 }
 
-int to_pdf(const char *xml, const char *pdf)
+int to_pdf(const mdata_t *data, const char *pdf)
 {
     int ret = -1;
 
-    char *tex = to_tex(xml);
+    char *tex = to_tex(data);
     ERR_RET(!tex, "convert xml 2 tex failed.");
 
     ret = tex2pdf(tex, pdf);
